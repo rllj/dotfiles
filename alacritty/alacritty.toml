@@ -1,45 +1,56 @@
 live_config_reload = true
 
-[colors]
-draw_bold_text_with_bright_colors = false
+#[colors]
+#draw_bold_text_with_bright_colors = false
+#
+#[colors.primary]
+#background = "0x1d2021"
+#foreground = "0xd5c4a1"
+#
+#[colors.cursor]
+#cursor = "0xd5c4a1"
+#text = "0x1d2021"
+#
+#[colors.normal]
+#black = "0x1d2021"
+#red = "0xfb4934"
+#blue = "0x83a598"
+#cyan = "0x8ec07c"
+#green = "0xb8bb26"
+#magenta = "0xd3869b"
+#white = "0xd5c4a1"
+#yellow = "0xfabd2f"
+#
+#[colors.bright]
+#black = "0x665c54"
+#red = "0xfe8019"
+#green = "0x3c3836"
+#yellow = "0x504945"
+#blue = "0xbdae93"
+#magenta = "0xebdbb2"
+#cyan = "0xd65d0e"
+#white = "0xfbf1c7"
 
-[colors.primary]
-background = "0x1d2021"
-foreground = "0xd5c4a1"
-
-[colors.cursor]
-cursor = "0xd5c4a1"
-text = "0x1d2021"
-
-[colors.normal]
-black = "0x1d2021"
-red = "0xfb4934"
-blue = "0x83a598"
-cyan = "0x8ec07c"
-green = "0xb8bb26"
-magenta = "0xd3869b"
-white = "0xd5c4a1"
-yellow = "0xfabd2f"
-
-[colors.bright]
-black = "0x665c54"
-red = "0xfe8019"
-green = "0x3c3836"
-yellow = "0x504945"
-blue = "0xbdae93"
-magenta = "0xebdbb2"
-cyan = "0xd65d0e"
-white = "0xfbf1c7"
+import = [
+  #"~/.config/alacritty/catppuccin-latte.toml"
+  # "~/.config/alacritty/catppuccin-frappe.toml"
+  #"~/.config/alacritty/themes/catppuccin-macchiato.toml",
+  #"~/.config/alacritty/catppuccin-mocha.toml"
+  "~/.config/alacritty/themes/gruvbox.toml"
+  #"~/.config/alacritty/alacritty-colors.toml"
+    #"~/.config/alacritty/themes/kanagawa_dragon.toml"
+    #"~/.config/alacritty/themes/kanagawa_wave.toml"
+]
 
 [env]
 TERM = "alacritty"
 
 [font]
-size = 15
+size = 16
 
 [font.normal]
 family = "JetBrainsMonoNL Nerd Font"
-style = "Medium"
+style = "Bold"
 
 [scrolling]
 history = 10000
@@ -47,6 +58,6 @@ history = 10000
 [window]
 dynamic_title = false
 title = "Terminal"
-decorations = "None"
+decorations = "Buttonless"
 dynamic_padding = true
 opacity = 1
