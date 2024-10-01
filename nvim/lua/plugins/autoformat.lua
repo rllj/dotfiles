@@ -1,4 +1,4 @@
-return { -- Autoformat
+local M = { -- Autoformat
 	"stevearc/conform.nvim",
 	lazy = false,
 	keys = {
@@ -16,7 +16,7 @@ return { -- Autoformat
 		format_on_save = function(bufnr)
 			local disable_filetypes = { c = true, cpp = true }
 			if
-				vim.g.disable_autoformat
+				vim.b.disable_autoformat
 				-- or vim.bo[bufnr].disable_autoformat
 				or disable_filetypes[vim.bo[bufnr].filetype]
 			then
@@ -40,3 +40,17 @@ return { -- Autoformat
 		},
 	},
 }
+
+vim.api.nvim_create_user_command("FormatDisable", function()
+	vim.b.disable_autoformat = true
+end, {
+	desc = "Disable autoformat on save for current buffer",
+})
+
+vim.api.nvim_create_user_command("FormatEnable", function()
+	vim.b.disable_autoformat = false
+end, {
+	desc = "Enable autoformat on save for current buffer",
+})
+
+return M
