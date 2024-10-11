@@ -1,5 +1,6 @@
 return { -- Collection of various small independent plugins/modules
 	"echasnovski/mini.nvim",
+	enabled = require("config.util").is_enabled("echasnovski/mini.nvim"),
 	config = function()
 		-- Better Around/Inside textobjects
 		--

@@ -1,5 +1,6 @@
 return { -- LSP Configuration & Plugins
 	"neovim/nvim-lspconfig",
+	enabled = require("config.util").is_enabled("neovim/nvim-lspconfig"),
 	dependencies = {
 		-- Automatically install LSPs and related tools to stdpath for Neovim
 		{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
@@ -85,7 +86,10 @@ return { -- LSP Configuration & Plugins
 			gopls = {},
 			rust_analyzer = {},
 			cssls = {},
-			zls = {},
+			zls = {
+				enable_build_on_save = true,
+				enable_inlay_hints = true,
+			},
 
 			cucumber_language_server = {
 				settings = {

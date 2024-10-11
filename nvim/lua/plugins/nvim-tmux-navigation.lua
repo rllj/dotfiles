@@ -1,5 +1,6 @@
 return {
 	"alexghergh/nvim-tmux-navigation",
+	enabled = require("config.util").is_enabled("alexghergh/nvim-tmux-navigation"),
 	config = function()
 		local nvim_tmux_nav = require("nvim-tmux-navigation")
 

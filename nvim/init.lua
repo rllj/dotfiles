@@ -127,5 +127,5 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 --vim.o.background = "dark"
--- vim.o.termguicolors = false
+--vim.o.termguicolors = true
 vim.cmd([[colorscheme gruvbox]])

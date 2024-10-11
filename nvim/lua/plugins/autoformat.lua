@@ -1,5 +1,6 @@
 local M = { -- Autoformat
 	"stevearc/conform.nvim",
+	enabled = require("config.util").is_enabled("stevearc/conform.nvim"),
 	lazy = false,
 	keys = {
 		{
@@ -12,6 +13,7 @@ local M = { -- Autoformat
 		},
 	},
 	opts = {
+		ensure_installed = { { "prettier" } },
 		notify_on_error = false,
 		format_on_save = function(bufnr)
 			local disable_filetypes = { c = true, cpp = true }

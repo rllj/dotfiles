@@ -1,5 +1,6 @@
 return {
 	"debugloop/telescope-undo.nvim",
+	enabled = require("config.util").is_enabled("debugloop/telescope-undo.nvim"),
 	dependencies = {
 		{
 			"nvim-telescope/telescope.nvim",

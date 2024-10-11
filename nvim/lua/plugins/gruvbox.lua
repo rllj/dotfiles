@@ -1,11 +1,12 @@
 return {
 	"ellisonleao/gruvbox.nvim",
+	enabled = require("config.util").is_enabled("ellisonleao/gruvbox.nvim"),
 	name = "gruvbox",
 	config = function()
 		require("gruvbox").setup({
 			terminal_colors = true, -- add neovim terminal colors
 			undercurl = true,
-			underline = false,
+			underline = true,
 			bold = true,
 			italic = {
 				strings = false,

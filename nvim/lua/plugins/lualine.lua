@@ -1,5 +1,6 @@
 return {
 	"nvim-lualine/lualine.nvim",
+	enabled = require("config.util").is_enabled("nvim-lualine/lualine.nvim"),
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	opts = {
 		sections = {

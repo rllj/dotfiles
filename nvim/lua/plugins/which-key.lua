@@ -1,5 +1,6 @@
 return { -- Useful plugin to show you pending keybinds.
 	"folke/which-key.nvim",
+	enabled = require("config.util").is_enabled("folke/which-key.nvim"),
 	event = "VeryLazy",
 	opts = {
 		-- your configuration comes here

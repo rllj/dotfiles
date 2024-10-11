@@ -36,7 +36,7 @@ import = [
   # "~/.config/alacritty/catppuccin-frappe.toml"
   #"~/.config/alacritty/themes/catppuccin-macchiato.toml",
   #"~/.config/alacritty/catppuccin-mocha.toml"
-  "~/.config/alacritty/themes/gruvbox.toml"
+  "~/.config/alacritty/themes/gruvbox2.toml"
   #"~/.config/alacritty/alacritty-colors.toml"
     #"~/.config/alacritty/themes/kanagawa_dragon.toml"
     #"~/.config/alacritty/themes/kanagawa_wave.toml"
