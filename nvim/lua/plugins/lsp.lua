@@ -42,8 +42,7 @@ return { -- LSP Configuration & Plugins
 
 				map("K", vim.lsp.buf.hover, "Hover Documentation")
 
-				-- WARN: This is not Goto Definition, this is Goto Declaration.
-				--  For example, in C this would take you to the header.
+				map("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
 				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -79,7 +78,7 @@ return { -- LSP Configuration & Plugins
 		})
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+		-- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 		local servers = {
 			clangd = {},
@@ -88,7 +87,14 @@ return { -- LSP Configuration & Plugins
 			cssls = {},
 			zls = {
 				enable_build_on_save = true,
+				build_on_save_step = "check",
 				enable_inlay_hints = true,
+			},
+
+			ocamllsp = {
+				cmd = { "ocamllsp" },
+				filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
+				capabilities = capabilities,
 			},
 
 			cucumber_language_server = {

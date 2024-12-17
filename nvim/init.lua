@@ -19,21 +19,24 @@ vim.opt.rtp:prepend(lazypath)
 -- Load plugins
 require("lazy").setup("plugins")
 require("lspconfig").clangd.setup({})
-require("lspconfig").eslint.setup({
-	on_attach = function(client, bufnr)
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			buffer = bufnr,
-			command = "EslintFixAll",
-		})
-	end,
+-- require("lspconfig").eslint.setup({
+-- 	on_attach = function(client, bufnr)
+-- 		vim.api.nvim_create_autocmd("BufWritePre", {
+-- 			buffer = bufnr,
+-- 			command = "EslintFixAll",
+-- 		})
+-- 	end,
+-- })
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	pattern = { "*.c", "*.h", "*.cpp", "*.hpp", "*.zig" },
+	command = "set colorcolumn=80",
 })
 
 vim.opt.termguicolors = true
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
--- Set tab width to always be
--- 2 because the default is 8!
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
@@ -127,5 +130,5 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 --vim.o.background = "dark"
---vim.o.termguicolors = true
+vim.o.termguicolors = true
 vim.cmd([[colorscheme gruvbox]])

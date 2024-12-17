@@ -6,7 +6,7 @@ return {
 	["hrsh7th/nvim-cmp"] = { enabled = true, start = true },
 	["stevearc/conform.nvim"] = { enabled = true, start = true },
 	["windwp/nvim-ts-autotag"] = { enabled = true, start = true },
-	["catppuccin/nvim"] = { enabled = true, start = true },
+	["catppuccin/nvim"] = { enabled = false, start = false },
 	["f-person/git-blame.nvim"] = { enabled = true, start = true },
 	["ellisonleao/gruvbox.nvim"] = { enabled = true, start = true },
 	["NMAC427/guess-indent.nvim"] = { enabled = true, start = true },
@@ -27,4 +27,5 @@ return {
 	["echasnovski/mini.base16"] = { enabled = false, start = false },
 	["nvim-tree/nvim-tree.lua"] = { enabled = false, start = false },
 	["saghen/blink.cmp"] = { enabled = false, start = false },
+	["rose-pine"] = { enabled = true, start = true },
 }

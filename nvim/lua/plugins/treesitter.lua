@@ -14,6 +14,22 @@ return { -- Highlight, edit, and navigate code
 			additional_vim_regex_highlighting = false,
 		},
 		indent = { enable = true },
+		textobjects = {
+			select = {
+				enable = true,
+				lookahead = true,
+				keymaps = {
+					["af"] = "@function.outer",
+					["if"] = "@function.inner",
+					["ac"] = "@class.outer",
+					["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+
+					["ia"] = "@parameter.inner",
+					["aa"] = "@parameter.outer",
+					["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
+				},
+			},
+		},
 	},
 	config = function(_, opts)
 		-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
