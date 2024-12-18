@@ -1,134 +1,101 @@
--- See `:help mapleader`
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
--- disable netrw at the very start of your init.lua
+-- Disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-end ---@diagnostic disable-next-line: undefined-field
-vim.opt.rtp:prepend(lazypath)
+require("config.lazy")
 
--- Load plugins
-require("lazy").setup("plugins")
-require("lspconfig").clangd.setup({})
--- require("lspconfig").eslint.setup({
--- 	on_attach = function(client, bufnr)
--- 		vim.api.nvim_create_autocmd("BufWritePre", {
--- 			buffer = bufnr,
--- 			command = "EslintFixAll",
--- 		})
--- 	end,
--- })
+vim.opt.clipboard = "unnamedplus"
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-	pattern = { "*.c", "*.h", "*.cpp", "*.hpp", "*.zig" },
-	command = "set colorcolumn=80",
-})
+vim.opt.undofile = true
 
-vim.opt.termguicolors = true
-
--- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = true
+-- Defualt tab settings. Is also set on a per file-basis in after/ftplugin
+vim.opt.breakindent = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.shiftround = true
 
--- Make line numbers default
-vim.opt.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
-vim.opt.relativenumber = true
+vim.opt.termguicolors = true
 
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = "a"
+vim.g.have_nerd_font = true
 
--- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
-
--- Don't wrap
+-- Don't wrap lines
 vim.opt.wrap = false
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.opt.clipboard = "unnamedplus"
 
--- Enable break indent
-vim.opt.breakindent = true
+-- Text highlighting
+vim.opt.hlsearch = true
 
--- Save undo history
-vim.opt.undofile = true
+-- Don't allow the cursor to be at the very top or bottom of the screen
+vim.opt.scrolloff = 10
 
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.api.nvim_create_autocmd("TextYankPost", {
+    desc = "Highlight when yanking (copying) text",
+    group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+    callback = function()
+        vim.hl.on_yank()
+    end,
+})
+-- ESC in normal mode removes highlights
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- Keep signcolumn on by default
-vim.opt.signcolumn = "yes"
+-- Line number settings
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.cursorline = true
 
--- Decrease update time
-vim.opt.updatetime = 250
-
--- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
-
--- Configure how new splits should be opened
+-- Set splits to open to the right and bottom,
+-- instead of the somewhat confusing default of top and left.
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
--- vim.opt.list = true
--- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+-- Set signcolomn to avoid the buffer shifting to the right
+vim.o.signcolumn = 'yes'
 
--- Preview substitutions live, as you type!
-vim.opt.inccommand = "split"
-
--- Show which line your cursor is on
-vim.opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
-
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
-
--- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.opt.hlsearch = true
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-
--- Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-
--- TIP: Disable arrow keys in normal mode
-vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
-vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
-vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
-vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
-
-vim.keymap.set("n", "T", require("ts-node-action").node_action, { desc = "Trigger Node Action" })
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+-- TODO: Should probably move to after/ftplugin
+-- Enable colourcolumn for certain file types
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+    pattern = { "*.c", "*.h", "*.cpp", "*.hpp", "*.zig" },
+    command = "set colorcolumn=80",
 })
 
---vim.o.background = "dark"
-vim.o.termguicolors = true
-vim.cmd([[colorscheme gruvbox]])
+-- LSPs
+-- Set root of project to the folder where .git is located for all LSPs
+vim.lsp.config('*', {
+    root_markers = { '.git' },
+    capabilities = require('blink.cmp').get_lsp_capabilities()
+})
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+        assert(client ~= nil)
+
+        if client:supports_method('textDocument/formatting') then
+            -- Format the current buffer on save
+            vim.api.nvim_create_autocmd('BufWritePre', {
+                buffer = args.buf,
+                callback = function()
+                    vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+                    vim.diagnostic.enable() -- Workaround for bug where diagnostics are cleared when formatting.
+                    -- See https://github.com/neovim/neovim/issues/25014
+                end,
+            })
+        end
+    end,
+})
+
+-- Diagnostics
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
+
+local language_servers = {
+    'luals',
+    'gopls',
+    'rust_analyzer',
+}
+
+vim.lsp.enable(language_servers)
+
+-- Colourscheme
+vim.o.background = "dark"
+vim.cmd('colorscheme gruvbox')

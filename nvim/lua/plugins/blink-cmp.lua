@@ -1,55 +1,65 @@
+-- TODO: Integrate copilot when available
 return {
-	"saghen/blink.cmp",
-	enabled = require("config.util").is_enabled("saghen/blink.cmp"),
-	lazy = false, -- lazy loading handled internally
-	-- optional: provides snippets for the snippet source
-	dependencies = "rafamadriz/friendly-snippets",
+    'saghen/blink.cmp',
+    lazy = false, -- lazy loading handled internally
 
-	{
-		"L3MON4D3/LuaSnip",
-		build = (function()
-			-- Build Step is needed for regex support in snippets.
-			-- This step is not supported in many windows environments.
-			-- Remove the below condition to re-enable on windows.
-			if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
-				return
-			end
-			return "make install_jsregexp"
-		end)(),
-		dependencies = {
-			{
-				"rafamadriz/friendly-snippets",
-				config = function()
-					require("luasnip.loaders.from_vscode").lazy_load()
-				end,
-			},
-		},
-	},
+    version = 'v0.*',
 
-	-- use a release tag to download pre-built binaries
-	version = "v0.*",
-	-- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-	-- build = 'cargo build --release',
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+        completion = {
+            list = {
+                selection = 'preselect',
+                cycle = { from_top = true, from_bottom = true },
+            },
 
-	opts = {
-		keymap = {
-			accept = "<Tab>",
-			select_prev = "<C-p>",
-			select_next = "<C-n>",
-		},
-		highlight = {
-			-- sets the fallback highlight groups to nvim-cmp's highlight groups
-			-- useful for when your theme doesn't support blink.cmp
-			-- will be removed in a future release, assuming themes add support
-			use_nvim_cmp_as_default = true,
-		},
-		-- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-		-- adjusts spacing to ensure icons are aligned
-		nerd_font_variant = "mono",
+            keyword = {
+                range = 'full',
+            },
 
-		-- accept = { auto_brackets = { enabled = true } },
+            accept = {
+                create_undo_point = false,
+                auto_brackets = {
+                    enabled = true,
+                }
+            },
 
-		-- experimental signature help support
-		-- trigger = { signature_help = { enabled = true } }
-	},
+            documentation = {
+                auto_show = true,
+                auto_show_delay_ms = 0,
+                treesitter_highlighting = true,
+            },
+
+            menu = {
+                auto_show = true,
+                draw = {
+                    treesitter = true,
+                },
+            },
+
+            ghost_text = {
+                enabled = true,
+            },
+        },
+        keymap = {
+            preset = "default",
+            ["<Tab>"] = { "accept", "fallback" },
+            ["<C-p>"] = { "select_prev", "fallback" },
+            ["<C-n>"] = { "select_next", "fallback" },
+        },
+
+        appearance = {
+            use_nvim_cmp_as_default = true,
+            nerd_font_variant = 'mono'
+        },
+
+        sources = {
+            default = { 'lsp', 'path', 'buffer' },
+        },
+
+    },
+    -- allows extending the providers array elsewhere in your config
+    -- without having to redefine it
+    opts_extend = { "sources.default" }
 }
