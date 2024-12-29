@@ -1,0 +1,24 @@
+# Custom patch of the Zed font: https://mutsuntsai.github.io/fontfreeze/
+font-family = Zed Plex Mono Slashed
+font-size   = 15
+
+# Why on earth is there so much padding by default???
+window-padding-x = 0
+window-padding-y = 0
+window-padding-balance = false
+
+theme = gruvbox.conf
+background-opacity = 1
+macos-non-native-fullscreen = visible-menu
+mouse-hide-while-typing = true
+    
+cursor-style = block
+shell-integration-features = no-cursor
+
+# Need to figure out how integrate ghostty splits with neovim splits
+#keybind = unconsumed:ctrl+h=goto_split:left
+#keybind = unconsumed:ctrl+j=goto_split:bottom
+#keybind = unconsumed:ctrl+k=goto_split:top
+#keybind = unconsumed:ctrl+l=goto_split:right
+
+scrollback-limit = 1000000000

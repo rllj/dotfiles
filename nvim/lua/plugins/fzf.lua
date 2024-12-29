@@ -24,7 +24,7 @@ return {
         { "<leader>gh",  "<cmd>FzfLua git_bcommits<cr>",               desc = "History - FzfLua Git Commits (buffer)" },
         { "<leader>gs",  "<cmd>FzfLua git_status<cr>" },
 
-        { "<leader>ga",  "<cmd>FzfLua lsp_code_actions<cr>",           desc = "Fzf Code Actions" },
+        { "<leader>ca",  "<cmd>FzfLua lsp_code_actions<cr>",           desc = "Fzf Code Actions" },
         { "<leader>gf",  "<cmd>FzfLua lsp_finder<cr>",                 desc = "Fzf LSP Finder" },
         { "<leader>gi",  "<cmd>FzfLua lsp_implementations<cr>",        desc = "Fzf Implementations" },
         { "<leader>go",  "<cmd>FzfLua lsp_outgoing_calls<cr>",         desc = "Fzf Outgoing Calls" },

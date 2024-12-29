@@ -3,12 +3,14 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 require("config.lazy")
+require("config.lsp")
 
 vim.opt.clipboard = "unnamedplus"
 
+-- Save undos after closing file
 vim.opt.undofile = true
 
--- Defualt tab settings. Is also set on a per file-basis in after/ftplugin
+-- Defualt tab settings. Is also set on a per filetype-basis in after/ftplugin
 vim.opt.breakindent = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
@@ -51,50 +53,16 @@ vim.opt.splitbelow = true
 -- Set signcolomn to avoid the buffer shifting to the right
 vim.o.signcolumn = 'yes'
 
+-- Ignore case unless there is at least one capital letter in the search
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 -- TODO: Should probably move to after/ftplugin
 -- Enable colourcolumn for certain file types
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     pattern = { "*.c", "*.h", "*.cpp", "*.hpp", "*.zig" },
     command = "set colorcolumn=80",
 })
-
--- LSPs
--- Set root of project to the folder where .git is located for all LSPs
-vim.lsp.config('*', {
-    root_markers = { '.git' },
-    capabilities = require('blink.cmp').get_lsp_capabilities()
-})
-
-vim.api.nvim_create_autocmd('LspAttach', {
-    callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-        assert(client ~= nil)
-
-        if client:supports_method('textDocument/formatting') then
-            -- Format the current buffer on save
-            vim.api.nvim_create_autocmd('BufWritePre', {
-                buffer = args.buf,
-                callback = function()
-                    vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
-                    vim.diagnostic.enable() -- Workaround for bug where diagnostics are cleared when formatting.
-                    -- See https://github.com/neovim/neovim/issues/25014
-                end,
-            })
-        end
-    end,
-})
-
--- Diagnostics
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-
-local language_servers = {
-    'luals',
-    'gopls',
-    'rust_analyzer',
-}
-
-vim.lsp.enable(language_servers)
 
 -- Colourscheme
 vim.o.background = "dark"

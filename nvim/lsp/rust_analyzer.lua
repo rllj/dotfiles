@@ -1,5 +1,5 @@
-local util = require('utils.lsp_utils')
-local async = require('utils.async')
+local util = require('lsp_utils.async')
+local async = require('lsp_utils.lsp_utils')
 
 local function reload_workspace(bufnr)
     bufnr = util.validate_bufnr(bufnr)

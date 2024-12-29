@@ -1,3 +1,4 @@
 **/.DS_STORE
 dotfiles.sh
 .bak/
+**/secrets.zsh

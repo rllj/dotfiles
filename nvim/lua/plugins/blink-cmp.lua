@@ -1,7 +1,6 @@
--- TODO: Integrate copilot when available
 return {
     'saghen/blink.cmp',
-    lazy = false, -- lazy loading handled internally
+    lazy = false,
 
     version = 'v0.*',
 
@@ -33,9 +32,6 @@ return {
 
             menu = {
                 auto_show = true,
-                draw = {
-                    treesitter = true,
-                },
             },
 
             ghost_text = {
