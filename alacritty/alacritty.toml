@@ -21,7 +21,7 @@ size = 16
 
 [font.normal]
 # Custom patch of the Zed font: https://mutsuntsai.github.io/fontfreeze/
-family = "Zed Plex Mono Slashed"
+family = "Zed Plex Mono"
 style = "Regular"
 
 [scrolling]

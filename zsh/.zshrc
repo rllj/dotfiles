@@ -32,6 +32,8 @@ alias sz="source $HOME/.zshrc"
 alias fzf="fzf --preview "bat --color=always --style=numbers --line-range=:500 {}""
 # ripgrep
 alias rg="rg --hidden"
+# ls colors
+alias ls="ls --color=auto"
 
 # Override macOS' default C-compilers
 export CC="/opt/homebrew/opt/llvm/bin/clang"

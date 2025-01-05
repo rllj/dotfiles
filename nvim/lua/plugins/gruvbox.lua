@@ -19,13 +19,13 @@ return {
         invert_signs = false,
         invert_tabline = false,
         invert_intend_guides = false,
-        inverse = true,    -- invert background for search, diffs, statuslines and errors
+        inverse = true, -- invert background for search, diffs, statuslines and errors
         contrast = "hard", -- Gruvbox dark hard ftw
         palette_overrides = {},
         overrides = {
-            BlinkCmpGhostText = { fg = "#928374" }
+            BlinkCmpGhostText = { fg = "#928374" },
         },
         dim_inactive = false,
         transparent_mode = false,
-    }
+    },
 }
