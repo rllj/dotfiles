@@ -12,7 +12,7 @@ local root_files = {
 return {
     cmd = { 'pyright-langserver', '--stdio' },
     filetypes = { "python" },
-    root_markers = { unpack(root_files) },
+    root_markers = root_files,
     settings = {
         python = {
             analysis = {
@@ -20,6 +20,7 @@ return {
                 useLibraryCodeForTypes = true,
                 diagnosticMode = "openFilesOnly",
             },
+            venvPath = vim.env.VIRTUAL_ENV and vim.env.VIRTUAL_ENV or vim.env.PYENV_ROOT,
         },
     },
 }

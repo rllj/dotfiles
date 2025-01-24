@@ -11,3 +11,4 @@ zstyle ':completion:*' menu select
 # Shift-tab to go backwards in completions
 zmodload zsh/complist
 bindkey -M menuselect '^[[Z' reverse-menu-complete
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh

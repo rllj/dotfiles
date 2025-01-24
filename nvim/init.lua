@@ -51,7 +51,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- Set signcolomn to avoid the buffer shifting to the right
-vim.o.signcolumn = 'yes'
+vim.o.signcolumn = "yes"
 
 -- Ignore case unless there is at least one capital letter in the search
 vim.opt.ignorecase = true
@@ -66,4 +66,5 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 
 -- Colourscheme
 vim.o.background = "dark"
-vim.cmd('colorscheme gruvbox')
+vim.cmd("colorscheme gruvbox")
+-- vim.cmd("colorscheme rose-pine-dawn")

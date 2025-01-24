@@ -2,11 +2,11 @@
 font-family = Zed Plex Mono Slashed
 font-size   = 16
 
-# Why on earth is there so much padding by default???
 window-padding-x = 0
 window-padding-y = 0
 
 theme = gruvbox.conf
+#theme = rose-pine-dawn
 background-opacity = 1
 macos-non-native-fullscreen = visible-menu
 mouse-hide-while-typing = true
@@ -14,10 +14,10 @@ mouse-hide-while-typing = true
 cursor-style = block
 shell-integration-features = no-cursor
 
-keybind = cmd+ctrl+h=goto_split:left
-keybind = cmd+ctrl+j=goto_split:bottom
-keybind = cmd+ctrl+k=goto_split:top
-keybind = cmd+ctrl+l=goto_split:right
+keybind = cmd+shift+h=goto_split:left
+keybind = cmd+shift+j=goto_split:bottom
+keybind = cmd+shift+k=goto_split:top
+keybind = cmd+shift+l=goto_split:right
 
 scrollback-limit = 1000000000
 unfocused-split-opacity=1

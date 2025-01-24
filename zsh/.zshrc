@@ -23,13 +23,14 @@ alias gck="git checkout"
 alias gap="git add -p"
 alias gst="git status"
 alias gcl="git clone"
+alias gri="git rebase -i"
 
 # Edit/Source zsh config
-alias ez="vim $HOME/zsh/"
+alias ez="vim $HOME/zsh/.zshrc"
 alias sz="source $HOME/.zshrc"
 
 # fzf
-alias fzf="fzf --preview "bat --color=always --style=numbers --line-range=:500 {}""
+alias fzf='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
 # ripgrep
 alias rg="rg --hidden"
 # ls colors
@@ -43,6 +44,7 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 
 export EDITOR='nvim'
+export BAT_THEME="gruvbox-dark"
 
 # Hook direnv only if it is installed
 if type direnv &> /dev/null; then
@@ -51,3 +53,9 @@ fi
 
 # OPAM
 [[ ! -r '/Users/m01632/.opam/opam-init/init.zsh' ]] || source '/Users/m01632/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+
+#pyenv
+export PATH="$PYENV_ROOT/shims:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"

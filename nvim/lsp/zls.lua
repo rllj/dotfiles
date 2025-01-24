@@ -9,7 +9,7 @@ return {
             zig_exe_path = "/Users/m01632/.local/bin/zig",
             semantic_tokens = "partial",
             enable_build_on_save = true,
-            build_on_save_step = "check",
+            build_on_save_args = "install",
         }
     }
 }
