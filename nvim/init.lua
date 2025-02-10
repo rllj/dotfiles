@@ -68,3 +68,8 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 vim.o.background = "dark"
 vim.cmd("colorscheme gruvbox")
 -- vim.cmd("colorscheme rose-pine-dawn")
+
+vim.keymap.set('n', 'gK', function()
+    local toggle_diagnostic_lines = not vim.diagnostic.config().virtual_lines
+    vim.diagnostic.config({ virtual_lines = toggle_diagnostic_lines })
+end, { desc = 'Toggle diagnostic virtual_lines' })

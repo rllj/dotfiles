@@ -44,6 +44,7 @@ local language_servers = {
     "rust_analyzer",
     "zls",
     "pyright",
+    "typescript"
 }
 
 vim.lsp.enable(language_servers)

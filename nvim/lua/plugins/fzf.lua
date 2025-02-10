@@ -2,10 +2,24 @@ return {
     "ibhagwan/fzf-lua",
     enabled = true,
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-        "fzf-native",
-        fzf_colors = true,
-    },
+    opts = function()
+        local fzf = require("fzf-lua")
+        local actions = fzf.actions
+        --local config = fzf.config
+
+        --config.defaults.keymap.fzf["ctrl-q"] = "select-all+accept"
+
+        return {
+            "fzf-native",
+            fzf_colors = true,
+            actions = {
+                files = {
+                    true,
+                    ["ctrl-q"] = actions.file_sel_to_qf,
+                }
+            },
+        }
+    end,
     keys = {
         { "<leader>sf",  "<cmd>FzfLua files<cr>",                      desc = "Fzf files" },
         { "<leader>sg",  "<cmd>FzfLua live_grep<cr>",                  desc = "Fzf live_grep" },

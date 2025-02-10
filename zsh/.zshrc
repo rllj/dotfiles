@@ -36,9 +36,16 @@ alias rg="rg --hidden"
 # ls colors
 alias ls="ls --color=auto"
 
+# Start server for llama.cpp
+alias start-llama="llama-server \
+    -hf ggml-org/Qwen2.5-Coder-7B-Q8_0-GGUF \
+    --port 8012 -ngl 99 -fa -ub 1024 -b 1024 \
+    --ctx-size 0 --cache-reuse 256"
+
+
 # Override macOS' default C-compilers
-export CC="/opt/homebrew/opt/llvm/bin/clang"
-export CXX="/opt/homebrew/opt/llvm/bin/clang++"
+#export CC="/opt/homebrew/opt/llvm/bin/clang"
+#export CXX="/opt/homebrew/opt/llvm/bin/clang++"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
@@ -59,3 +66,11 @@ export PATH="$PYENV_ROOT/shims:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh --disable-up-arrow)"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/m01632/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
