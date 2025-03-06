@@ -31,11 +31,11 @@ vim.opt.hlsearch = true
 vim.opt.scrolloff = 10
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-    desc = "Highlight when yanking text",
-    group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
-    callback = function()
-        vim.hl.on_yank()
-    end,
+	desc = "Highlight when yanking text",
+	group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+	callback = function()
+		vim.hl.on_yank()
+	end,
 })
 -- ESC in normal mode removes highlights
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
@@ -60,8 +60,8 @@ vim.opt.smartcase = true
 -- TODO: Should probably move to after/ftplugin
 -- Enable colourcolumn for certain file types
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-    pattern = { "*.c", "*.h", "*.cpp", "*.hpp", "*.zig" },
-    command = "set colorcolumn=80",
+	pattern = { "*.c", "*.h", "*.cpp", "*.hpp", "*.zig" },
+	command = "set colorcolumn=80",
 })
 
 -- Colourscheme
@@ -69,7 +69,7 @@ vim.o.background = "dark"
 vim.cmd("colorscheme gruvbox")
 -- vim.cmd("colorscheme rose-pine-dawn")
 
-vim.keymap.set('n', 'gK', function()
-    local toggle_diagnostic_lines = not vim.diagnostic.config().virtual_lines
-    vim.diagnostic.config({ virtual_lines = toggle_diagnostic_lines })
-end, { desc = 'Toggle diagnostic virtual_lines' })
+vim.keymap.set("n", "gK", function()
+	local toggle_diagnostic_lines = not vim.diagnostic.config().virtual_lines
+	vim.diagnostic.config({ virtual_lines = toggle_diagnostic_lines })
+end, { desc = "Toggle diagnostic virtual_lines" })

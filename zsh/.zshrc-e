@@ -24,9 +24,6 @@ export LSCOLORS="Gxfxcxdxbxegedabagacad"
 export EDITOR='nvim'
 export BAT_THEME="gruvbox-dark"
 
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_HOME="$HOME"
-
 # Hook direnv only if it is installed
 if type direnv &> /dev/null; then
     eval "$(direnv hook zsh)"
@@ -45,4 +42,6 @@ eval "$(pyenv init - zsh)"
 
 eval "$(atuin init zsh --disable-up-arrow)"
 
-[ -f "/Users/m01632/.ghcup/env" ] && . "/Users/m01632/.ghcup/env" # ghcup-env
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/m01632/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

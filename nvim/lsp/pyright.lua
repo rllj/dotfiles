@@ -10,14 +10,16 @@ local root_files = {
 
 ---@type vim.lsp.Config
 return {
-    cmd = { 'pyright-langserver', '--stdio' },
+    cmd = { 'pyright-langserver', '--stdio', },
     filetypes = { "python" },
     root_markers = root_files,
     settings = {
+        pyright = {
+            disableOrganizeImports = true,
+        },
         python = {
             analysis = {
-                autoSearchPaths = true,
-                useLibraryCodeForTypes = true,
+                ignore = { '*' }, -- Using Ruff
                 diagnosticMode = "openFilesOnly",
             },
             venvPath = vim.env.VIRTUAL_ENV and vim.env.VIRTUAL_ENV or vim.env.PYENV_ROOT,
